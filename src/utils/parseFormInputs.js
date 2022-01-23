@@ -12,7 +12,7 @@ const parseFormInputs = (data) => {
   const dom = new jsdom.JSDOM(data);
   const params = {};
   // get the form action attribute
-  const form = dom.window.document.querySelector("form");
+  const action = dom.window.document.querySelector("form").action;
   // filter input elements for values needed for next request
   const inputs = [...dom.window.document.querySelectorAll("input")];
   inputs
@@ -22,8 +22,8 @@ const parseFormInputs = (data) => {
       params[name] = value;
     });
   return {
-    action: form.action,
-    params: params,
+    action,
+    params
   };
 };
 

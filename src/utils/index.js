@@ -1,3 +1,4 @@
+export { default as followRedirects} from "./followRedirects.js";
 export { default as getAuthentication } from "./getAuthentication.js";
 export { default as getAuthTokens } from "./getAuthTokens.js";
 export { default as getCodeVerifier } from "./getCodeVerifier.js";

@@ -1,34 +1,10 @@
 import axios from "axios";
 import "dotenv/config";
 
+import { followRedirects } from "./index.js";
+
 import { VW_IDENTITY_URL } from "../config.js";
-
 const { VW_PASSWORD } = process.env;
-
-/**
- *
- * @param response
- * @returns {Promise<any>}
- */
-
-const followRedirects = (response) => {
-  if (response.status === 302) {
-    const redirectUrl = response.headers.location;
-    // check if last redirect and return
-    if (redirectUrl.includes("car-net:///oauth-callback?")) {
-      return redirectUrl;
-    } else {
-      // keep following redirects until last one is reached
-      return axios
-        .get(redirectUrl, {
-          maxRedirects: 0,
-          validateStatus: (status) => status >= 200 && status < 400,
-        })
-        .then((response) => followRedirects(response))
-        .catch((err) => console.log(err));
-    }
-  }
-};
 
 /**
  * @name postPasswordForm
