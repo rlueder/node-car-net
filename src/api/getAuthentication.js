@@ -1,8 +1,7 @@
-import { randomUUID } from "crypto";
 import axios from "axios";
+import { randomUUID } from "crypto";
 
 import { VW_BASE_URL, VW_CLIENT_ID, VW_OAUTH_CALLBACK } from "../config.js";
-import { getCodeChallenge, getCodeVerifier } from "./index.js";
 
 /**
  * @name getAuthentication

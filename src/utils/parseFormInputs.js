@@ -23,7 +23,7 @@ const parseFormInputs = (data) => {
     });
   return {
     action,
-    params
+    params,
   };
 };
 

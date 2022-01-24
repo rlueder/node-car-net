@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /**
  *
  * @type {string}
@@ -25,3 +27,14 @@ export const VW_CLIENT_ID =
  */
 
 export const VW_OAUTH_CALLBACK = "car-net:///oauth-callback";
+
+/**
+ * @name client
+ */
+
+export const client = axios.create({
+  baseURL: VW_BASE_URL,
+  headers: {
+    // Authorization: `Bearer ${accessToken}`
+  },
+});
