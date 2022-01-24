@@ -1,7 +1,8 @@
 import {
   getAuthentication,
   getAuthTokens,
-  getStatus,
+  getAcctStatus,
+  getCarStatus,
   postEmailForm,
   postPasswordForm,
 } from "./api/index.js";
@@ -40,15 +41,19 @@ const logIn = () => {
                 (response) => response.data
               );
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.message));
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err.message));
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err.message));
 };
 
 logIn().then((tokens) =>
-  getStatus(tokens).then((response) =>
-    console.log(JSON.stringify(response.data.data))
-  )
+  getAcctStatus(tokens).then((response) => {
+    const accountInfo = response.data.data;
+    console.log(JSON.stringify(accountInfo));
+    const { vehicleId } = accountInfo.vehicleEnrollmentStatus[0];
+    console.log(vehicleId);
+    // return getCarStatus(tokens, vehicleId);
+  })
 );

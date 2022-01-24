@@ -3,25 +3,23 @@ import axios from "axios";
 import { VW_BASE_URL } from "../config.js";
 
 /**
- * @name getStatus
+ * @name getCarStatus
  * @param {Object} tokens
+ * @param {string} vehicleId
  * @returns {Promise<any>}
  */
 
-const getStatus = (tokens) => {
-  const { access_token, id_token } = tokens;
+const getCarStatus = (tokens, vehicleId) => {
+  const { access_token } = tokens;
   return axios
-    .get("/account/v1/enrollment/status", {
+    .get(`/rvs/v1/vehicle/${vehicleId}`, {
       baseURL: VW_BASE_URL,
       headers: {
         Authorization: `Bearer ${access_token}`,
       },
-      params: {
-        idToken: id_token,
-      },
     })
     .then((response) => response)
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err.message));
 };
 
-export default getStatus;
+export default getCarStatus;

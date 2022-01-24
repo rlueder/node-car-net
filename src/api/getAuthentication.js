@@ -25,7 +25,7 @@ const getAuthentication = (challenge) => {
       },
     })
     .then((response) => response)
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err.message));
 };
 
 export default getAuthentication;

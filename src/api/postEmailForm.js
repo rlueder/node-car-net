@@ -27,7 +27,7 @@ const postEmailForm = (form, cookie) => {
     })
     .then((response) => response)
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 };
 

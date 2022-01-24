@@ -29,7 +29,7 @@ const postPasswordForm = async (form, cookie) => {
       validateStatus: (status) => status >= 200 && status < 400,
     })
     .then((response) => followRedirects(response))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err.message));
 };
 
 export default postPasswordForm;

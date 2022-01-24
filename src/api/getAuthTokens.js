@@ -23,7 +23,7 @@ const getAuthTokens = (code, verifier) => {
     })
     .then((response) => response)
     .catch((err) => {
-      console.log(err);
+      console.log(err.message);
     });
 };
 
