@@ -1,9 +1,6 @@
 import axios from "axios";
-import "dotenv/config";
 
-import { VW_IDENTITY_URL } from "../config.js";
-
-const { VW_EMAIL } = process.env;
+import { VW_EMAIL, VW_IDENTITY_URL } from "../config.js";
 
 /**
  * @async
@@ -26,7 +23,7 @@ const postEmailForm = async (form, cookie) => {
         email: VW_EMAIL,
       },
     })
-    .then((response) => response)
+    .then((response) => response.data)
     .catch((err) => {
       console.log(err.message);
     });

@@ -1,10 +1,8 @@
 import axios from "axios";
-import "dotenv/config";
+
+import { VW_IDENTITY_URL, VW_PASSWORD } from "../config.js";
 
 import { followRedirects } from "./index.js";
-
-import { VW_IDENTITY_URL } from "../config.js";
-const { VW_PASSWORD } = process.env;
 
 /**
  * @async

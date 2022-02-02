@@ -19,7 +19,7 @@ const logIn = async () => {
   let cookie, form, tokens;
 
   try {
-    // Step 1 - get Auth parameters
+    // Step 1 - GET Auth parameters
     form = await getAuthentication(challenge).then((response) => {
       const headers = response.headers["set-cookie"][0];
       cookie = headers.split(";")[0];
@@ -28,7 +28,7 @@ const logIn = async () => {
 
     // Step 2 - POST email form
     form = await postEmailForm(form, cookie).then((response) =>
-      parseFormInputs(response.data)
+      parseFormInputs(response)
     );
 
     // Step 3 - POST password form

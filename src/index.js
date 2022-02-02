@@ -11,8 +11,8 @@ import logIn from "./logIn.js";
   const vehicleId = accountInfo.vehicleEnrollmentStatus[0].vehicleId;
   console.log({ vehicleId });
 
-  // const cartStatus = await getCarStatus(tokens, vehicleId);
-  // console.log({ cartStatus });
+  // const carStatus = await getCarStatus(tokens, vehicleId);
+  // console.log({ carStatus });
 
   // const healthStatus = await getHealthStatus(tokens, vehicleId);
   // console.log({ healthStatus });
