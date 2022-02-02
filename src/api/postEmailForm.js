@@ -6,15 +6,16 @@ import { VW_IDENTITY_URL } from "../config.js";
 const { VW_EMAIL } = process.env;
 
 /**
+ * @async
  * @name postEmailForm
  * @param {Object} form
  * @param {string} cookie
  * @returns {Promise<any>}
  */
 
-const postEmailForm = (form, cookie) => {
+const postEmailForm = async (form, cookie) => {
   const { action, params } = form;
-  return axios
+  return await axios
     .post(action, null, {
       baseURL: VW_IDENTITY_URL,
       headers: {

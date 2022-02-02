@@ -1,12 +1,13 @@
 import axios from "axios";
 
 /**
+ * @async
  * @name followRedirects
  * @param {Object} response
  * @returns {Promise<any>}
  */
 
-const followRedirects = (response) => {
+const followRedirects = async (response) => {
   if (response.status === 302) {
     const redirectUrl = response.headers.location;
     // check if last redirect and return
@@ -14,7 +15,7 @@ const followRedirects = (response) => {
       return redirectUrl;
     } else {
       // keep following redirects until last one is reached
-      return axios
+      return await axios
         .get(redirectUrl, {
           maxRedirects: 0,
           validateStatus: (status) => status === 302,

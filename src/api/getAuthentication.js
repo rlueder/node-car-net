@@ -4,13 +4,14 @@ import { randomUUID } from "crypto";
 import { VW_BASE_URL, VW_CLIENT_ID, VW_OAUTH_CALLBACK } from "../config.js";
 
 /**
+ * @async
  * @name getAuthentication
  * @param {string} challenge
  * @returns {Promise<any>}
  */
 
-const getAuthentication = (challenge) => {
-  return axios
+const getAuthentication = async (challenge) => {
+  return await axios
     .get("/oidc/v1/authorize", {
       baseURL: VW_BASE_URL,
       params: {

@@ -7,6 +7,7 @@ import { VW_IDENTITY_URL } from "../config.js";
 const { VW_PASSWORD } = process.env;
 
 /**
+ * @async
  * @name postPasswordForm
  * @param {Object} form
  * @param {string} cookie
@@ -15,7 +16,7 @@ const { VW_PASSWORD } = process.env;
 
 const postPasswordForm = async (form, cookie) => {
   const { action, params } = form;
-  return axios
+  return await axios
     .post(action, null, {
       baseURL: VW_IDENTITY_URL,
       headers: {

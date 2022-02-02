@@ -3,14 +3,15 @@ import axios from "axios";
 import { VW_BASE_URL, VW_CLIENT_ID, VW_OAUTH_CALLBACK } from "../config.js";
 
 /**
+ * @async
  * @name getAuthTokens
  * @param {string} code
  * @param {string} verifier
  * @returns {Promise<any>}
  */
 
-const getAuthTokens = (code, verifier) => {
-  return axios
+const getAuthTokens = async (code, verifier) => {
+  return await axios
     .post("/oidc/v1/token", null, {
       baseURL: VW_BASE_URL,
       params: {
@@ -21,7 +22,7 @@ const getAuthTokens = (code, verifier) => {
         redirect_uri: VW_OAUTH_CALLBACK,
       },
     })
-    .then((response) => response)
+    .then((response) => response.data)
     .catch((err) => {
       console.log(err.message);
     });
