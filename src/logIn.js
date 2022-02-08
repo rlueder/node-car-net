@@ -10,10 +10,12 @@ import { getPKCE, parseFormInputs } from "./utils/index.js";
 /**
  * @name logIn
  * @summary Starts the log in flow.
+ * @param {Object} response - the user email and password
  * @returns {Object} tokens
  */
 
-const logIn = async () => {
+const logIn = async (response) => {
+  const { email, password } = response;
   const { challenge, verifier } = getPKCE();
 
   let cookie, form, tokens;
@@ -27,12 +29,12 @@ const logIn = async () => {
     });
 
     // Step 2 - POST email form
-    form = await postEmailForm(form, cookie).then((response) =>
+    form = await postEmailForm(email, form, cookie).then((response) =>
       parseFormInputs(response)
     );
 
     // Step 3 - POST password form
-    const code = await postPasswordForm(form, cookie).then(
+    const code = await postPasswordForm(password, form, cookie).then(
       (response) => response?.split("&")[1].split("=")[1]
     );
 

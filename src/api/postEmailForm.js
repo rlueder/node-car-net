@@ -1,16 +1,17 @@
 import axios from "axios";
 
-import { VW_EMAIL, VW_IDENTITY_URL } from "../config.js";
+import { VW_IDENTITY_URL } from "../config.js";
 
 /**
  * @async
  * @name postEmailForm
+ * @param {string} email
  * @param {Object} form
  * @param {string} cookie
  * @returns {Promise<any>}
  */
 
-const postEmailForm = async (form, cookie) => {
+const postEmailForm = async (email, form, cookie) => {
   const { action, params } = form;
   return await axios
     .post(action, null, {
@@ -20,7 +21,7 @@ const postEmailForm = async (form, cookie) => {
       },
       params: {
         ...params,
-        email: VW_EMAIL,
+        email,
       },
     })
     .then((response) => response.data)
