@@ -1,18 +1,19 @@
 import axios from "axios";
 
-import { VW_IDENTITY_URL, VW_PASSWORD } from "../config.js";
+import { VW_IDENTITY_URL } from "../config.js";
 
 import { followRedirects } from "./index.js";
 
 /**
  * @async
  * @name postPasswordForm
+ * @param {string} password
  * @param {Object} form
  * @param {string} cookie
  * @returns {Promise<any>}
  */
 
-const postPasswordForm = async (form, cookie) => {
+const postPasswordForm = async (password, form, cookie) => {
   const { action, params } = form;
   return await axios
     .post(action, null, {
@@ -23,7 +24,7 @@ const postPasswordForm = async (form, cookie) => {
       maxRedirects: 0, // disable redirects so we can intercept them
       params: {
         ...params,
-        password: VW_PASSWORD,
+        password: password,
       },
       validateStatus: (status) => status >= 200 && status < 400,
     })
