@@ -3,3 +3,4 @@ export { default as getCodeChallenge } from "./getCodeChallenge.js";
 export { default as getPKCE } from "./getPKCE.js";
 export { default as parseFormInputs } from "./parseFormInputs.js";
 export { default as questions } from "./questions.js";
+export { default as spinner } from "./spinner.js";
