@@ -34,7 +34,7 @@ const postPasswordForm = async (email, password, form, cookie) => {
 
       }, maxRedirects: 0, // disable redirects so we can intercept them
       params: {
-        ...params, //email, password,
+        ...params, email, password,
       }, validateStatus: (status) => status >= 200 && status < 401,
     })
     .then((response) => followRedirects(response))
