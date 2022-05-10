@@ -18,28 +18,29 @@ const logIn = async (response) => {
   const { email, password } = response;
   const { challenge, verifier } = getPKCE();
 
-  let cookie, form, tokens;
+  let cookie, form1, form2, tokens;
 
   try {
     // Step 1 - GET Auth parameters
-    form = await getAuthentication(challenge).then((response) => {
+    form1 = await getAuthentication(challenge).then((response) => {
       const headers = response.headers["set-cookie"][0];
       cookie = headers.split(";")[0];
-      return parseFormInputs(response.data);
+      return parseFormInputs(response.data, 1);
+    });
+    // Step 2 - POST email form
+    form2 = await postEmailForm(email, form1, cookie).then((response) => {
+      return parseFormInputs(response, 2)
     });
 
-    // Step 2 - POST email form
-    form = await postEmailForm(email, form, cookie).then((response) =>
-      parseFormInputs(response)
-    );
-
     // Step 3 - POST password form
-    const code = await postPasswordForm(password, form, cookie).then(
+    const code = await postPasswordForm(email, password, form2, cookie).then(
       (response) => response?.split("&")[1].split("=")[1]
     );
+    console.log("Code 3:" + code)
 
     // Step 4 - GET tokens
     tokens = await getAuthTokens(code, verifier);
+    console.log("Tokens 4:" + form2)
 
     return tokens;
   } catch (err) {

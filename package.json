@@ -24,6 +24,7 @@
   "homepage": "https://github.com/rlueder/node-car-net#readme",
   "dependencies": {
     "axios": "^0.25.0",
+    "axios-curlirize": "^2.0.0",
     "dotenv": "^14.2.0",
     "jsdom": "^19.0.0",
     "prompts": "^2.4.2",

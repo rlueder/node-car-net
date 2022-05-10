@@ -5,11 +5,10 @@ import { questions, spinner } from "./utils/index.js";
 import logIn from "./logIn.js";
 
 (async () => {
-  const response = await prompts(questions).then((res) => {
+  let response = await prompts(questions).then((res) => {
     spinner.start("Logging in to VW car-net...");
     return res;
   });
-
   const tokens = await logIn(response);
   // console.log(tokens);
 

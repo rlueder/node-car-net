@@ -11,7 +11,7 @@ import {VW_IDENTITY_URL} from "../config.js";
  * @returns {Promise<any>}
  */
 
-const postEmailForm = async (email, form, cookie) => {
+const getAuthPage = async (email, form, cookie) => {
   const {action, params} = form;
   return await axios
     .post(action, null, {

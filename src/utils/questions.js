@@ -13,7 +13,7 @@ const questions = [
     message: "Enter your VW password:",
     name: "password",
     style: "password",
-    type: "text",
+    type: "text"
   },
 ];
 
